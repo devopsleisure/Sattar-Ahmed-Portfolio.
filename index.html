@@ -1,0 +1,494 @@
+diff --git a/index.html b/index.html
+index 3158588adb52d48ce3227ce8395c727b4f328d80..17c81fd8c06deb7f3e5a0c1c4c08cdb13f5f741a 100644
+--- a/index.html
++++ b/index.html
+@@ -1,55 +1,60 @@
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
++<meta name="description" content="Portfolio of Sattar Ahmed, a medical billing and revenue cycle specialist focused on claims quality, denial management, and AR optimization.">
+ <title>Sattar Ahmed — Medical Billing & Revenue Cycle Expert</title>
++<link rel="preconnect" href="https://fonts.googleapis.com">
++<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Jost:wght@200;300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+ <!-- EmailJS SDK — sends contact form directly to Gmail without any backend -->
+ <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+ <style>
+ :root {
+   --gold: #C9A84C; --gold-light: #E8D080; --gold-dim: #7A6130;
+   --navy: #080C18; --navy-mid: #0F1623; --navy-card: #131B2E;
+   --white: #F2EDE3; --muted: #8A8276; --accent: #4A8FC2; --green: #2ECC8A;
+ }
+ *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+ html{scroll-behavior:smooth}
+ body{background:var(--navy);color:var(--white);font-family:'Jost',sans-serif;font-weight:300;overflow-x:hidden;line-height:1.6}
+ ::-webkit-scrollbar{width:3px}::-webkit-scrollbar-track{background:var(--navy)}::-webkit-scrollbar-thumb{background:var(--gold-dim)}
+ 
+ .grid-bg{position:fixed;inset:0;background-image:linear-gradient(rgba(201,168,76,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(201,168,76,.035) 1px,transparent 1px);background-size:64px 64px;pointer-events:none;z-index:0}
+ 
+ /* NAV */
+ nav{position:fixed;top:0;left:0;right:0;z-index:999;display:flex;justify-content:space-between;align-items:center;padding:0 60px;height:70px;background:rgba(8,12,24,.97);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid rgba(201,168,76,.12)}
+ nav::after{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--gold),var(--gold-light),var(--gold),transparent);opacity:.7}
+ .nav-brand{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:600;letter-spacing:5px;color:var(--gold);text-transform:uppercase;text-decoration:none;flex-shrink:0}
+ .nav-links{display:flex;gap:40px;list-style:none}
+ .nav-links a{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:2.5px;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color .3s;position:relative;white-space:nowrap}
+ .nav-links a::after{content:'';position:absolute;bottom:-5px;left:0;width:0;height:1px;background:var(--gold);transition:width .3s}
+ .nav-links a:hover{color:var(--gold)}.nav-links a:hover::after{width:100%}
++.nav-links a.active{color:var(--gold)}
++.nav-links a.active::after{width:100%}
+ 
+ /* Hamburger */
+ .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;z-index:1001;background:none;border:none}
+ .hamburger span{display:block;width:24px;height:2px;background:var(--gold);transition:all .3s ease;transform-origin:center}
+ .hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+ .hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0)}
+ .hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+ 
+ .mobile-nav{display:none;position:fixed;top:70px;left:0;right:0;background:rgba(8,12,24,.98);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid rgba(201,168,76,.15);z-index:998;max-height:0;overflow:hidden;transition:max-height .4s ease,padding .4s ease}
+ .mobile-nav.open{max-height:400px;padding:20px 0 30px}
+ .mobile-nav ul{list-style:none;display:flex;flex-direction:column}
+ .mobile-nav ul li a{display:block;padding:14px 32px;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);text-decoration:none;border-bottom:1px solid rgba(201,168,76,.06);transition:color .3s,background .3s}
+ .mobile-nav ul li a:hover{color:var(--gold);background:rgba(201,168,76,.04)}
+ 
+ .page{position:relative;z-index:1}
+ 
+ /* HERO */
+ #hero{min-height:100vh;display:flex;align-items:center;padding:100px 60px 80px;position:relative;overflow:hidden}
+ .orb1{position:absolute;top:-150px;right:-150px;width:700px;height:700px;background:radial-gradient(circle,rgba(201,168,76,.09) 0%,transparent 65%);pointer-events:none}
+ .orb2{position:absolute;bottom:-100px;left:-100px;width:500px;height:500px;background:radial-gradient(circle,rgba(74,143,194,.07) 0%,transparent 65%);pointer-events:none}
+ .hero-wm{position:absolute;bottom:30px;right:-10px;font-family:'Cormorant Garamond',serif;font-size:clamp(40px,9vw,140px);font-weight:700;color:rgba(201,168,76,.04);letter-spacing:14px;text-transform:uppercase;pointer-events:none;white-space:nowrap;user-select:none}
+ .hero-inner{max-width:1200px;margin:0 auto;width:100%;display:grid;grid-template-columns:1.1fr .9fr;gap:80px;align-items:center;position:relative;z-index:2}
+ .eyebrow{display:flex;align-items:center;gap:14px;margin-bottom:22px;flex-wrap:wrap}
+ .live-dot{width:7px;height:7px;background:var(--green);border-radius:50%;box-shadow:0 0 10px var(--green);animation:blink 2.2s ease-in-out infinite;flex-shrink:0}
+ @keyframes blink{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.75)}}
+@@ -148,107 +153,117 @@ nav::after{content:'';position:absolute;top:0;left:0;right:0;height:2px;backgrou
+ .contact-hl{font-family:'Cormorant Garamond',serif;font-size:clamp(28px,4vw,48px);font-weight:300;line-height:1.2;margin-bottom:20px}
+ .contact-hl em{color:var(--gold);font-style:italic}
+ .contact-sub{font-size:15px;color:var(--muted);line-height:1.8;margin-bottom:40px}
+ .c-list{display:flex;flex-direction:column;gap:18px}
+ .c-row{display:flex;align-items:center;gap:16px}
+ .c-ico{width:44px;height:44px;flex-shrink:0;background:rgba(201,168,76,.07);border:1px solid rgba(201,168,76,.2);display:flex;align-items:center;justify-content:center;font-size:17px}
+ .c-lbl{font-size:10px;font-family:'Space Mono',monospace;color:var(--gold-dim);letter-spacing:1px;text-transform:uppercase;margin-bottom:3px}
+ .c-val{font-size:14.5px;color:var(--white)}
+ .c-val a{color:var(--white);text-decoration:none;transition:color .3s}
+ .c-val a:hover{color:var(--gold)}
+ .contact-form{display:flex;flex-direction:column;gap:14px}
+ .f-in,.f-ta{width:100%;background:rgba(255,255,255,.028);border:1px solid rgba(255,255,255,.08);color:var(--white);font-family:'Jost',sans-serif;font-size:14px;font-weight:300;padding:15px 20px;outline:none;transition:border-color .3s,background .3s;-webkit-appearance:none;border-radius:0}
+ .f-in:focus,.f-ta:focus{border-color:rgba(201,168,76,.45);background:rgba(201,168,76,.03)}
+ .f-in::placeholder,.f-ta::placeholder{color:rgba(138,130,118,.7);font-size:13px}
+ .f-ta{resize:vertical;min-height:120px}
+ .btn-sub{width:100%;padding:16px;background:var(--gold);color:var(--navy);font-family:'Space Mono',monospace;font-size:10px;letter-spacing:2.5px;text-transform:uppercase;font-weight:700;border:none;cursor:pointer;transition:all .3s;clip-path:polygon(0 0,calc(100% - 12px) 0,100% 12px,100% 100%,12px 100%,0 calc(100% - 12px))}
+ .btn-sub:hover{background:var(--gold-light);transform:translateY(-2px);box-shadow:0 12px 30px rgba(201,168,76,.28)}
+ .btn-sub:disabled{opacity:.6;cursor:not-allowed;transform:none;box-shadow:none}
+ 
+ /* Toast notification */
+ .toast{position:fixed;bottom:32px;right:32px;z-index:9999;padding:16px 28px;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;border-radius:2px;transform:translateY(20px);opacity:0;transition:all .4s ease;pointer-events:none}
+ .toast.show{transform:translateY(0);opacity:1}
+ .toast.success{background:var(--green);color:#0a1a12}
+ .toast.error{background:#e05c5c;color:#fff}
+ 
++.to-top{position:fixed;right:22px;bottom:22px;z-index:900;width:44px;height:44px;border:1px solid rgba(201,168,76,.4);background:rgba(8,12,24,.85);color:var(--gold);font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;opacity:0;transform:translateY(15px);pointer-events:none;transition:all .3s}
++.to-top.show{opacity:1;transform:translateY(0);pointer-events:auto}
++.to-top:hover{background:rgba(201,168,76,.12);border-color:var(--gold-light)}
++
+ /* FOOTER */
+ footer{background:var(--navy);border-top:1px solid rgba(201,168,76,.1);padding:38px 60px;position:relative;z-index:1}
+ .footer-inner{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;gap:20px}
+ .footer-name{font-family:'Cormorant Garamond',serif;font-size:22px;color:var(--gold);letter-spacing:2px}
+ .footer-copy{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:1.5px;color:var(--gold-dim);text-align:right;line-height:1.8}
+ 
+ /* REVEAL */
+ .rv{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease}
+ .rv.on{opacity:1;transform:translateY(0)}
+ 
+ /* TABLET */
+ @media(max-width:960px){
+   nav{padding:0 24px}.nav-links{display:none}
+   .hamburger{display:flex}.mobile-nav{display:block}
+   .sec,#hero{padding:80px 24px}#hero{padding-top:100px}
+   .hero-inner{grid-template-columns:1fr;gap:50px}.hero-wm{display:none}
+   .exp-grid{grid-template-columns:1fr 1fr}.skills-layout{grid-template-columns:1fr;gap:40px}
+   .cert-grid{grid-template-columns:1fr 1fr}.contact-layout{grid-template-columns:1fr;gap:50px}
+   .spec-row{flex-direction:column}
+   footer{padding:30px 24px}.footer-inner{flex-direction:column;gap:14px;text-align:center}.footer-copy{text-align:center}
+ }
+ /* MOBILE */
+ @media(max-width:600px){
+   nav{padding:0 20px}.nav-brand{font-size:14px;letter-spacing:3px}
+   #hero{padding:90px 20px 60px}.hero-name{font-size:clamp(44px,13vw,68px)}
+   .hero-bio{font-size:14px}.hero-card{padding:28px 20px}
+   .hero-btns{gap:10px}.btn-gold,.btn-outline{padding:12px 22px;font-size:8px}
+   .sec{padding:60px 20px}.sec-title{margin-bottom:40px}
+   .exp-grid{grid-template-columns:1fr}.exp-card{padding:32px 24px}
+   .cert-grid{grid-template-columns:1fr}
+   .stats-grid{grid-template-columns:1fr 1fr}.stat-n{font-size:32px}
+   .skill-name{font-size:12px}.spec-card{padding:30px 20px;min-width:unset}
+   .timeline{padding-left:30px}.tl-dot{left:-36px}
+   .contact-layout{gap:40px}.contact-form{gap:12px}
+   .f-in,.f-ta{padding:13px 16px;font-size:13px}
+   footer{padding:24px 20px}.footer-name{font-size:18px}
+   .tag{padding:6px 12px;font-size:11px}
+   .toast{bottom:16px;right:16px;left:16px;text-align:center}
++  .to-top{right:16px;bottom:16px}
++}
++
++@media(prefers-reduced-motion: reduce){
++  *,*::before,*::after{animation:none !important;transition:none !important;scroll-behavior:auto !important}
+ }
+ </style>
+ </head>
+ <body>
+ 
+ <div class="grid-bg"></div>
+ 
+ <!-- Toast notification -->
+ <div class="toast" id="toast"></div>
++<button class="to-top" id="toTop" aria-label="Back to top">↑</button>
+ 
+ <nav>
+   <a href="#hero" class="nav-brand">Sattar Ahmed</a>
+-  <ul class="nav-links">
+-    <li><a href="#expertise">Expertise</a></li>
+-    <li><a href="#skills">Skills</a></li>
+-    <li><a href="#specializations">Specialties</a></li>
+-    <li><a href="#experience">Experience</a></li>
+-    <li><a href="#certifications">Certifications</a></li>
+-    <li><a href="#contact">Contact</a></li>
++  <ul class="nav-links" id="desktopNavLinks">
++    <li><a href="#expertise" data-nav="expertise">Expertise</a></li>
++    <li><a href="#skills" data-nav="skills">Skills</a></li>
++    <li><a href="#specializations" data-nav="specializations">Specialties</a></li>
++    <li><a href="#experience" data-nav="experience">Experience</a></li>
++    <li><a href="#certifications" data-nav="certifications">Certifications</a></li>
++    <li><a href="#contact" data-nav="contact">Contact</a></li>
+   </ul>
+   <button class="hamburger" id="hamburger" aria-label="Toggle navigation" aria-expanded="false">
+     <span></span><span></span><span></span>
+   </button>
+ </nav>
+ 
+ <div class="mobile-nav" id="mobileNav">
+   <ul>
+     <li><a href="#expertise">Expertise</a></li>
+     <li><a href="#skills">Skills</a></li>
+     <li><a href="#specializations">Specialties</a></li>
+     <li><a href="#experience">Experience</a></li>
+     <li><a href="#certifications">Certifications</a></li>
+     <li><a href="#contact">Contact</a></li>
+   </ul>
+ </div>
+ 
+ <div class="page">
+ 
+ <!-- HERO -->
+ <section id="hero">
+   <div class="orb1"></div><div class="orb2"></div>
+   <div class="hero-wm">SATTAR AHMED</div>
+   <div class="hero-inner">
+     <div>
+@@ -468,132 +483,217 @@ footer{background:var(--navy);border-top:1px solid rgba(201,168,76,.1);padding:3
+   </div>
+ </section>
+ 
+ <footer>
+   <div class="footer-inner">
+     <div class="footer-name">Sattar Ahmed</div>
+     <div class="footer-copy">Medical Billing &amp; Revenue Cycle Expert<br>&#169; 2025 Sattar Ahmed. All rights reserved.</div>
+   </div>
+ </footer>
+ </div>
+ 
+ <script>
+ // ============================================================
+ //  EMAILJS CONFIGURATION
+ //  Steps to activate (free at emailjs.com):
+ //  1. Sign up at https://www.emailjs.com
+ //  2. Add Email Service → connect your Gmail → copy Service ID
+ //  3. Create Email Template → copy Template ID
+ //  4. Go to Account → copy Public Key
+ //  5. Paste the three values below and you're done
+ // ============================================================
+ const EMAILJS_PUBLIC_KEY  = 'YOUR_PUBLIC_KEY';   // e.g. 'xK2dP9mN...'
+ const EMAILJS_SERVICE_ID  = 'YOUR_SERVICE_ID';   // e.g. 'service_abc123'
+ const EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID';  // e.g. 'template_xyz789'
+ 
+-emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
++const EMAIL_FALLBACK = 'sattarahmedofficial1@gmail.com';
++const emailjsReady =
++  typeof window.emailjs !== 'undefined' &&
++  EMAILJS_PUBLIC_KEY !== 'YOUR_PUBLIC_KEY' &&
++  EMAILJS_SERVICE_ID !== 'YOUR_SERVICE_ID' &&
++  EMAILJS_TEMPLATE_ID !== 'YOUR_TEMPLATE_ID';
++
++if (emailjsReady) {
++  window.emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
++}
+ 
+-// ── Hamburger ──
++// ── UI controls ──
+ const hamburger = document.getElementById('hamburger');
+ const mobileNav = document.getElementById('mobileNav');
+-hamburger.addEventListener('click', () => {
+-  const open = mobileNav.classList.toggle('open');
+-  hamburger.classList.toggle('open', open);
+-  hamburger.setAttribute('aria-expanded', String(open));
+-});
+-mobileNav.querySelectorAll('a').forEach(link => {
+-  link.addEventListener('click', () => {
+-    mobileNav.classList.remove('open');
+-    hamburger.classList.remove('open');
+-    hamburger.setAttribute('aria-expanded', 'false');
++const toTop = document.getElementById('toTop');
++
++if (hamburger && mobileNav) {
++  hamburger.addEventListener('click', () => {
++    const open = mobileNav.classList.toggle('open');
++    hamburger.classList.toggle('open', open);
++    hamburger.setAttribute('aria-expanded', String(open));
+   });
+-});
+-document.addEventListener('click', e => {
+-  if (!hamburger.contains(e.target) && !mobileNav.contains(e.target)) {
+-    mobileNav.classList.remove('open');
+-    hamburger.classList.remove('open');
+-    hamburger.setAttribute('aria-expanded', 'false');
+-  }
+-});
+ 
+-// ── Scroll reveal ──
+-const rvObs = new IntersectionObserver((entries) => {
+-  entries.forEach((e, i) => {
+-    if (e.isIntersecting) {
+-      setTimeout(() => e.target.classList.add('on'), i * 55);
+-      rvObs.unobserve(e.target);
++  mobileNav.querySelectorAll('a').forEach(link => {
++    link.addEventListener('click', () => {
++      mobileNav.classList.remove('open');
++      hamburger.classList.remove('open');
++      hamburger.setAttribute('aria-expanded', 'false');
++    });
++  });
++
++  document.addEventListener('click', e => {
++    if (!hamburger.contains(e.target) && !mobileNav.contains(e.target)) {
++      mobileNav.classList.remove('open');
++      hamburger.classList.remove('open');
++      hamburger.setAttribute('aria-expanded', 'false');
+     }
+   });
+-}, { threshold: 0.08 });
+-document.querySelectorAll('.rv').forEach(el => rvObs.observe(el));
+-
+-// ── Skill bars ──
+-const barObs = new IntersectionObserver((entries) => {
+-  entries.forEach(e => {
+-    if (e.isIntersecting) {
+-      e.target.style.width = e.target.dataset.w + '%';
+-      barObs.unobserve(e.target);
++}
++
++// ── Active section tracking + back-to-top visibility ──
++const sectionIds = ['expertise', 'skills', 'specializations', 'experience', 'certifications', 'contact'];
++const navLinkMap = new Map(
++  Array.from(document.querySelectorAll('[data-nav]')).map(link => [link.dataset.nav, link])
++);
++
++const setActiveNav = (id) => {
++  navLinkMap.forEach((link, key) => {
++    link.classList.toggle('active', key === id);
++  });
++};
++
++if ('IntersectionObserver' in window) {
++  const secObs = new IntersectionObserver((entries) => {
++    const visible = entries
++      .filter(entry => entry.isIntersecting)
++      .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
++
++    if (visible[0]) {
++      setActiveNav(visible[0].target.id);
+     }
++  }, { threshold: [0.35, 0.6], rootMargin: '-10% 0px -35% 0px' });
++
++  sectionIds.forEach((id) => {
++    const section = document.getElementById(id);
++    if (section) secObs.observe(section);
+   });
+-}, { threshold: 0.2 });
+-document.querySelectorAll('.bar-fill').forEach(b => barObs.observe(b));
++}
++
++if (toTop) {
++  const toggleTopBtn = () => {
++    toTop.classList.toggle('show', window.scrollY > 360);
++  };
++
++  window.addEventListener('scroll', toggleTopBtn, { passive: true });
++  toggleTopBtn();
++
++  toTop.addEventListener('click', () => {
++    window.scrollTo({ top: 0, behavior: 'smooth' });
++  });
++}
++
++// ── Scroll reveal ──
++if ('IntersectionObserver' in window) {
++  const rvObs = new IntersectionObserver((entries) => {
++    entries.forEach((e, i) => {
++      if (e.isIntersecting) {
++        setTimeout(() => e.target.classList.add('on'), i * 55);
++        rvObs.unobserve(e.target);
++      }
++    });
++  }, { threshold: 0.08 });
++
++  document.querySelectorAll('.rv').forEach(el => rvObs.observe(el));
++
++  // ── Skill bars ──
++  const barObs = new IntersectionObserver((entries) => {
++    entries.forEach(e => {
++      if (e.isIntersecting) {
++        e.target.style.width = e.target.dataset.w + '%';
++        barObs.unobserve(e.target);
++      }
++    });
++  }, { threshold: 0.2 });
++
++  document.querySelectorAll('.bar-fill').forEach(b => barObs.observe(b));
++} else {
++  document.querySelectorAll('.rv').forEach(el => el.classList.add('on'));
++  document.querySelectorAll('.bar-fill').forEach(b => {
++    b.style.width = b.dataset.w + '%';
++  });
++}
+ 
+ // ── Toast helper ──
+ function showToast(msg, type) {
+   const t = document.getElementById('toast');
++  if (!t) return;
++
+   t.textContent = msg;
+   t.className = 'toast ' + type + ' show';
+-  setTimeout(() => { t.className = 'toast'; }, 4000);
++  setTimeout(() => {
++    t.className = 'toast';
++  }, 4000);
+ }
+ 
+ // ── Contact form with EmailJS ──
+-document.getElementById('contactForm').addEventListener('submit', async function(e) {
+-  e.preventDefault();
+-  const name    = document.getElementById('f_name').value.trim();
+-  const email   = document.getElementById('f_email').value.trim();
+-  const subject = document.getElementById('f_subject').value.trim();
+-  const message = document.getElementById('f_message').value.trim();
+-  const btn     = document.getElementById('sendBtn');
+-
+-  if (!name || !email || !subject || !message) {
+-    showToast('we messed up.', 'error'); return;
+-  }
+-  const emailRx = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+-  if (!emailRx.test(email)) {
+-    showToast('Please enter a valid email address.', 'error'); return;
+-  }
+-
+-  // If EmailJS keys are not set yet, fall back to mailto
+-  if (EMAILJS_PUBLIC_KEY === 'YOUR_PUBLIC_KEY') {
+-    const body = encodeURIComponent(
+-      'Name: ' + name + '\nEmail: ' + email + '\n\n' + message
+-    );
+-    window.location.href = 'mailto:sattarahmedofficial1@gmail.com'
+-      + '?subject=' + encodeURIComponent(subject)
+-      + '&body=' + body;
+-    return;
+-  }
+-
+-  btn.textContent = 'Sending...';
+-  btn.disabled = true;
+-
+-  try {
+-    await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
+-      from_name:    name,
+-      from_email:   email,
+-      subject:      subject,
+-      message:      message,
+-      to_email:     'sattarahmedofficial1@gmail.com'
+-    });
+-    showToast('Message sent successfully!', 'success');
+-    this.reset();
+-    btn.textContent = 'Message Sent';
+-    setTimeout(() => { btn.textContent = 'Send Message'; btn.disabled = false; }, 3000);
+-  } catch (err) {
+-    showToast('Failed to send. Please email directly.', 'error');
+-    btn.textContent = 'Send Message';
+-    btn.disabled = false;
+-  }
+-});
++const contactForm = document.getElementById('contactForm');
++if (contactForm) {
++  contactForm.addEventListener('submit', async function(e) {
++    e.preventDefault();
++
++    const name = document.getElementById('f_name')?.value.trim() || '';
++    const email = document.getElementById('f_email')?.value.trim() || '';
++    const subject = document.getElementById('f_subject')?.value.trim() || '';
++    const message = document.getElementById('f_message')?.value.trim() || '';
++    const btn = document.getElementById('sendBtn');
++
++    if (!name || !email || !subject || !message) {
++      showToast('Please complete all fields.', 'error');
++      return;
++    }
++
++    const emailRx = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
++    if (!emailRx.test(email)) {
++      showToast('Please enter a valid email address.', 'error');
++      return;
++    }
++
++    if (!emailjsReady) {
++      const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\n${message}`);
++      window.location.href = 'mailto:' + EMAIL_FALLBACK
++        + '?subject=' + encodeURIComponent(subject)
++        + '&body=' + body;
++      return;
++    }
++
++    if (btn) {
++      btn.textContent = 'Sending...';
++      btn.disabled = true;
++    }
++
++    try {
++      await window.emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
++        from_name: name,
++        from_email: email,
++        subject,
++        message,
++        to_email: EMAIL_FALLBACK
++      });
++
++      showToast('Message sent successfully!', 'success');
++      this.reset();
++
++      if (btn) {
++        btn.textContent = 'Message Sent';
++        setTimeout(() => {
++          btn.textContent = 'Send Message';
++          btn.disabled = false;
++        }, 3000);
++      }
++    } catch (err) {
++      showToast('Failed to send. Please email directly.', 'error');
++      if (btn) {
++        btn.textContent = 'Send Message';
++        btn.disabled = false;
++      }
++    }
++  });
++}
+ </script>
+ </body>
+ </html>
