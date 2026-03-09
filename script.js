@@ -122,14 +122,14 @@ function attachSearch(data) {
   };
 
   render(data.slice(0, 8));
-  input.addEventListener('input', (e) => {
+  input.oninput = (e) => {
     const q = e.target.value.toLowerCase().trim();
     if (!q) {
       render(data.slice(0, 8));
       return;
     }
     render(data.filter((item) => `${item.code} ${item.title} ${item.description}`.toLowerCase().includes(q)));
-  });
+  };
 }
 
 async function loadCodeData() {
