@@ -1,0 +1,6 @@
+[
+  {"code":"99213","title":"Office/outpatient established patient visit","description":"Evaluation and management visit of low complexity for an established patient."},
+  {"code":"93000","title":"Electrocardiogram (ECG)","description":"Routine ECG with at least 12 leads; includes interpretation and report."},
+  {"code":"80053","title":"Comprehensive metabolic panel","description":"Common chemistry panel used for metabolic and organ function assessment."},
+  {"code":"36415","title":"Collection of venous blood by venipuncture","description":"Used for blood specimen collection performed via venipuncture."}
+]
