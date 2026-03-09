@@ -1,0 +1,6 @@
+[
+  {"code":"E11.9","title":"Type 2 diabetes mellitus without complications","description":"Used when type 2 diabetes is documented without specific complications."},
+  {"code":"I10","title":"Essential (primary) hypertension","description":"Primary hypertension diagnosis without secondary cause."},
+  {"code":"J06.9","title":"Acute upper respiratory infection, unspecified","description":"General acute URI diagnosis when organism/condition is unspecified."},
+  {"code":"M54.50","title":"Low back pain, unspecified","description":"Used for non-specific lower back pain documentation."}
+]
