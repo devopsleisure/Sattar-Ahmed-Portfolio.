@@ -45,7 +45,7 @@ const faqData = {
   'Insurance Verification': [
     ['What is insurance verification?', 'Validating coverage, eligibility, and benefits before services are rendered.']
   ],
-  Credentialing: [
+  'Credentialing': [
     ['What is provider credentialing?', 'Enrollment and validation of providers with payers to enable claim reimbursement.']
   ],
   'Revenue Cycle Management': [
@@ -56,6 +56,7 @@ const faqData = {
 function renderFAQ() {
   const container = document.getElementById('faqContainer');
   if (!container) return;
+  container.innerHTML = '';
 
   Object.entries(faqData).forEach(([category, items]) => {
     const categoryEl = document.createElement('article');
